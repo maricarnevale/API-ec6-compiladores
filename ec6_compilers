@@ -1,0 +1,14 @@
+import requests
+
+resposta = requests.get("https://api.github.com/users/maricarnevale")
+
+usuario = resposta.json()
+
+print(usuario)
+arquivo = open("test.tsv", "a")
+arquivo.write("Perfil de Mariana Carnevale")
+
+for artigos in usuario:
+arquivo.write("Nome:{}\t Empresa:{}\t blog:{}\t Localização:{}\t Email:{}\t".format(artigos["name"], artigos["company"], artigos["blog"], artigos["location"], artigos["email"]))
+
+arquivo.close();
